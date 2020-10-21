@@ -1,0 +1,71 @@
+﻿@model ClientMed.Models.MedCalendar
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MedCalendar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+            <label asp-for="ClientID" class="control-label"></label>
+            <select asp-for="ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
+        </div>*@
+            <div class="form-group">
+                <label class="control-label" for="ClientID">Client Name</label>
+                <div>
+                    @Html.DropDownList("ClientID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.Client.ClientID)
+                </div>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="DaySchedID" class="control-label"></label>
+            <select asp-for="DaySchedID" class ="form-control" asp-items="ViewBag.DaySchedID"></select>
+        </div>*@
+            <div class="form-group">
+                <label class="control-label" for="DayOfWkId">Day of the week</label>
+                <div>
+                    @Html.DropDownList("DayOfWkId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DayOfWk.DayOfWkID)
+                </div>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="DayOfWkID" class="control-label"></label>
+            <select asp-for="DayOfWkID" class="form-control" asp-items="ViewBag.DayOfWkID"></select>
+        </div>*@
+            <div class="form-group">
+                <label class="control-label" for="DaySchedID">Day Timeslot</label>
+                <div>
+                    @Html.DropDownList("DaySchedId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DaySched.DaySchedID)
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SugarLvl" class="control-label">Sugar Level</label>
+                <input asp-for="SugarLvl" class="form-control" />
+                <span asp-validation-for="SugarLvl" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Done" /> @Html.DisplayNameFor(model => model.Done) serving medication?
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
